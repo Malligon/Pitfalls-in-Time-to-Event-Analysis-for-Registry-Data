@@ -99,6 +99,12 @@ plot_km_trunc(survfit(Surv(start, Tobs, status) ~ 1, data = DB),
               legend.lwd = 0.5)
 ```
 
-If you want to use codes for real life data, download and import in R the CEREDIH_randomised.csv database.
+If you want to use codes for real life data, download and import in R the `CEREDIH_randomised.csv database`. Just modify the `path` object in R with a string corresponding of the location of the database. It has to end with a `\`.
 
-You can now use "Simulation_and_Real_life_data_Survival_methods.R"
+``` r
+path <- "path of your file" # example "D:/Desktop/"
+
+DB <- read.csv2(paste(path, "CEREDIH_randomised.csv", sep = ""), dec=",", na.strings=c("NA",""," ",".","--", "N/A"))
+```
+
+You can now use `Simulation_and_Real_life_data_Survival_methods.R`.
