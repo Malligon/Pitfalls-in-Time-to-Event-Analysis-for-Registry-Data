@@ -82,7 +82,7 @@ legend("topright", legend = c("True survival", "KM taking into account truncatio
 
 ![(https://github.com/Malligon/Pitfalls-in-Time-to-Event-Analysis-for-Registry-Data/assets/43923608/08ec59a6-f4da-4254-af8a-9c58c0f99f7b)]
 
-In a real study, the database should contain only the patients with the group `trunc = 1` and the codes would look like that.
+In a real study, the database should contain only the patients with the group `trunc = 1` and the codes would look like that. Only the blue curve will appear.
 
 ``` r
 DB <- data.frame(Tobs = Tobs2, 
