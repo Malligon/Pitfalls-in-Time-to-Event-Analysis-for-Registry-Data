@@ -81,6 +81,7 @@ legend("topright", legend = c("True survival", "KM taking into account truncatio
 ```
 
 ![(https://github.com/Malligon/Pitfalls-in-Time-to-Event-Analysis-for-Registry-Data/assets/43923608/08ec59a6-f4da-4254-af8a-9c58c0f99f7b)]
+![Comparison truncature](https://github.com/Malligon/Pitfalls-in-Time-to-Event-Analysis-for-Registry-Data/assets/43923608/97b82df3-df65-496c-8989-dd0121a723dc)
 
 In a real study, the database should contain only the patients with the group `trunc = 1` and the codes would look like that. Only the blue curve will appear.
 
