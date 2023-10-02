@@ -80,7 +80,7 @@ lines(xaxis, exp(-(xaxis/scale)^shape), type = "l",
 legend("topright", legend = c("True survival", "KM taking into account truncation", "KM ignoring truncation"), col = c("black", "blue", "red"), lty = 1)
 ```
 
-
+![](Image/Comparison truncature.png)
 
 In a real study, the database should contain only the patients with the group `trunc = 1` and the codes would look like that.
 
