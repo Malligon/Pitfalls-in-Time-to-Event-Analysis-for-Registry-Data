@@ -108,4 +108,50 @@ path <- "path of your file" # example "D:/Desktop/"
 DB <- read.csv2(paste(path, "CEREDIH_randomised.csv", sep = ""), dec=",", na.strings=c("NA",""," ",".","--", "N/A"))
 ```
 
-You can now use `Simulation_and_Real_life_data_Survival_methods.R`.
+For recurrent events, after running the section `Recurrent event: simulation`, we simply call the functions that way.
+
+``` r
+rec_est <- rec_event(id = "id", start="start", stop="stop", status="status", terminal="terminal", recdata, recdata)
+
+f=function(x){(x/scale_event)^{shape_event-1}*exp(-(x/scale)^shape)*shape_event/scale_event}
+
+# plot
+
+par(mfrow = c(1, 2), mar = c(6 + 1, 4.5, 4, 3))
+
+plot.rec_event(x = rec_est,
+               conf.int = TRUE,
+               risk.table = TRUE,
+               main = "", 
+               xlab="Time", 
+               ylab="Mean number of recurrent events",
+               col = "blue",
+               xlim = c(0, 50),
+               lwd = 0.5)
+lines(seq(0, 50, by=0.01), sapply(xaxis,function(y){integrate(f,lower=0,upper=y)$value}), type = "l", col = "black", lty = 1,
+      lwd = 0.5)
+lines(rec_est$expecNP$time, cumsum(rec_est$expecNP$n.event)/N, type="l", col="red", lty=1,
+      lwd = 0.5)
+
+legend("topleft",c("Truth","Correct estimator", "Naive estimator"),lwd=0.5,lty=c(1,1)
+       ,col=c("black", "blue", "red"),inset=0.05)
+
+plot_km_trunc(survfit(Surv(start, stop, terminal) ~ 1, data = recdata), 
+              data = recdata, 
+              xlim = c(0, 50), 
+              col = "blue", 
+              legend = FALSE, 
+              Trunc = TRUE,
+              lwd = 0.5)
+lines(xaxis, exp(-(xaxis/scale)^shape), type = "l", col="black",
+      lwd = 0.5)
+
+legend("bottomleft",c("Truth","Correct estimator"),lwd=0.5,lty=c(1,1)
+       ,col=c("black", "blue"),inset=0.05)
+
+par(mfrow = c(1, 1))
+```
+
+![Recurrent events](https://github.com/Malligon/Pitfalls-in-Time-to-Event-Analysis-for-Registry-Data/assets/43923608/d0cfc199-24a6-4cfa-8bb9-4077d2e16004)
+
+One can note that the right plot is created by using the `plot_km_trunc` function. You can now use `Simulation_and_Real_life_data_Survival_methods.R`.
